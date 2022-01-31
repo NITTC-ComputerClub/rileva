@@ -18,5 +18,9 @@ npm run cdk deploy
 
 That's all.Enjoy!
 
+## System Overview
+![picture 1](system-overview.png)  
+
+
 ## Contribute
 Welcome!
