@@ -1,14 +1,22 @@
-# Welcome to your CDK TypeScript project!
+## What is rileva?
+Rilevaは豊田高専のホームページを監視し、お知らせが更新されるとTwitterに投稿して知らせてくれるシステムです。
 
-This is a blank project for TypeScript development with CDK.
+## How to deploy 
+依存関係のインストールとビルド
+```sh
+npm install
+npm run build
+```
+初めてデプロイする場合のみ
+```sh
+npm run cdk bootstrap
+```
+デプロイ
+```sh
+npm run cdk deploy
+```
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+That's all.Enjoy!
 
-## Useful commands
-
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+## Contribute
+Welcome!
