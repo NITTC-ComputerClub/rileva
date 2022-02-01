@@ -1,16 +1,20 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cdk from '@aws-cdk/core';
+import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs'
+import * as events from '@aws-cdk/aws-events'
+import * as targets from '@aws-cdk/aws-events-targets'
 
-export class RilevaStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+export class RilevaStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+    
+    const rilevaLambdaFunciton = new NodejsFunction(this,'rilevaLambdaFunciton',{
+      entry:'lambda/lireva.ts',
+      handler:'handler'
+    })
 
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'RilevaQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new events.Rule(this,'rilevaEventsRule',{
+      schedule: events.Schedule.cron({minute:'',hour:'',day:''}),
+      targets: [new targets.LambdaFunction(rilevaLambdaFunciton,{retryAttempts:3,})],
+    });
   }
 }
