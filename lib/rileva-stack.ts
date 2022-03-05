@@ -13,7 +13,7 @@ export class RilevaStack extends cdk.Stack {
     })
 
     new events.Rule(this,'rilevaEventsRule',{
-      schedule: events.Schedule.cron({minute:'',hour:'',day:''}),
+      schedule: events.Schedule.cron({minute:'0/1',hour:'*',day:'*'}),
       targets: [new targets.LambdaFunction(rilevaLambdaFunciton,{retryAttempts:3,})],
     });
   }
