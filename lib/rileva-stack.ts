@@ -30,13 +30,14 @@ export class RilevaStack extends cdk.Stack {
     const rilevaS3Bucket = new s3.Bucket(this,'rilevaS3Bucket',{
       bucketName:this.node.tryGetContext("bucketName") || 'rileva-s3-bucket',
     })
+    
     const rilevaBucketAccessPolicy = new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
       actions: ['s3:GetObject','s3:PutObject'],
       principals: [new iam.ServicePrincipal('lambda.amazonaws.com')],
       resources: [rilevaS3Bucket.bucketArn + '/*'],
     })
-    //Define secretsmanager to store twitter tokens
+    
     //Define EventRule to execute lambda regularly
     new events.Rule(this,'rilevaEventsRule',{
       schedule: events.Schedule.cron({minute:'0/1',hour:'*',day:'*'}),
