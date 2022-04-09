@@ -27,6 +27,8 @@
     "@aws-cdk/core:target-partitions": [
       "aws",
       "aws-cn"
-    ]
+    ],
+    "bucketName":"rileva-s3-bucket"
+
   }
 }
